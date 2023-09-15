@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "735700651958",
+    "firebase_url": "https://hotelia-dfd85-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "hotelia-dfd85",
+    "storage_bucket": "hotelia-dfd85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:735700651958:android:ee809f835fdcbff60bbb17",
+        "android_client_info": {
+          "package_name": "com.example.hotelia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "735700651958-q72ga4hkhcd6co32bu3d35429v8aenie.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCODz3N7KjKFQfYJ8A-P9kbcKSImwKj658"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "735700651958-q72ga4hkhcd6co32bu3d35429v8aenie.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
