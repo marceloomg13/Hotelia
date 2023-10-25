@@ -18,6 +18,7 @@ class Styles{
 
 class AppColors {
   static Color mirage = const Color(0xff141d2a);
+  static Color lowMirage = const Color(0xff1a2438);
   static Color rawSienna = const Color(0xffd7834f);
   static Color creamColor = const Color(0xfff5f5ff);
   static Color yellowish = const Color(0xffE7B975);

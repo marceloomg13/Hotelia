@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hotelia/utils/Styles.dart';
 
 import '../widgets/my_button.dart';
 
@@ -71,7 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: AppColors.mirage,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -96,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Text(
                   'Lets create an account for you!',
                   style: TextStyle(
-                    color: Colors.grey[700],
+                    color: Colors.white,
                     fontSize: 16,
                   ),
                 ),
@@ -110,6 +111,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'email or username',
+                        labelStyle: TextStyle(
+                          color: Colors.white
+                        ),
                         hintText: 'Enter valid email id as abc@gmail.com'),
                   ),
                 ),
@@ -123,6 +127,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'password',
+                        labelStyle: TextStyle(
+                            color: Colors.white
+                        ),
                         hintText: 'Enter valid email id as abc@gmail.com'),
                   ),
                 ),
@@ -136,6 +143,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'confirm password',
+                        labelStyle: TextStyle(
+                            color: Colors.white
+                        ),
                         hintText: 'Enter valid email id as abc@gmail.com'),
                   ),
                 ),
@@ -157,20 +167,20 @@ class _RegisterPageState extends State<RegisterPage> {
                       Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: Colors.grey[400],
+                          color: Colors.white,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
                           'Or continue with',
-                          style: TextStyle(color: Colors.grey[700]),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: Colors.grey[400],
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -184,7 +194,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     Text(
                       'Already have an account?',
-                      style: TextStyle(color: Colors.grey[700]),
+                      style: TextStyle(color: Colors.white),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(

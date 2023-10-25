@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hotelia/utils/Styles.dart';
 
 import '../widgets/my_button.dart';
 
@@ -71,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: AppColors.mirage,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -96,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                 Text(
                   'Welcome back you\'ve been missed!',
                   style: TextStyle(
-                    color: Colors.grey[700],
+                    color: Colors.white,
                     fontSize: 16,
                   ),
                 ),
@@ -106,11 +107,20 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
+                    style: TextStyle(color: Colors.white),
                     controller: emailController,
                     decoration: InputDecoration(
+                        prefixStyle: TextStyle(
+                          color: Colors.white,
+                        ),
                         border: OutlineInputBorder(),
                         labelText: 'email or username',
-                        hintText: 'Enter valid email id as abc@gmail.com'),
+                        labelStyle: TextStyle(
+                          color: Colors.white
+                        ),
+                        hintText: 'Enter valid email id as abc@gmail.com',
+                        hintStyle: TextStyle(color: Colors.white)
+                    ),
                   ),
                 ),
 
@@ -119,10 +129,16 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
+                    obscureText: true,
+                    style: TextStyle(color: Colors.white),
                     controller: passwordController,
                     decoration: InputDecoration(
+                        hintStyle: TextStyle(color: Colors.white),
                         border: OutlineInputBorder(),
                         labelText: 'password',
+                        labelStyle: TextStyle(
+                            color: Colors.white
+                        ),
                         hintText: 'Enter valid email id as abc@gmail.com'),
                   ),
                 ),
@@ -136,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Text(
                         'Forgot Password?',
-                        style: TextStyle(color: Colors.grey[600]),
+                        style: TextStyle(color: Colors.white),
                       ),
                     ],
                   ),
@@ -158,20 +174,20 @@ class _LoginPageState extends State<LoginPage> {
                       Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: Colors.grey[400],
+                          color: Colors.white,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
                           'Or continue with',
-                          style: TextStyle(color: Colors.grey[700]),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       Expanded(
                         child: Divider(
                           thickness: 0.5,
-                          color: Colors.grey[400],
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -183,7 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Text(
                       'Not a member?',
-                      style: TextStyle(color: Colors.grey[700]),
+                      style: TextStyle(color: Colors.white),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
