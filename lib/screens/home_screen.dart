@@ -12,8 +12,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 
-//actt
-
+//proba
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
