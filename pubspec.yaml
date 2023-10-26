@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   liquid_progress_indicator: ^0.4.0
   flutter_rating_bar: ^4.0.1
+  google_maps_flutter: ^2.5.0
+  google_maps_flutter_web: ^0.5.4+2
 
 dev_dependencies:
   flutter_test:

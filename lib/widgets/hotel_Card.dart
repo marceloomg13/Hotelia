@@ -65,14 +65,14 @@ class hotelCard extends StatelessWidget {
                       Row(
                         children: [
                           Icon(Icons.location_on),
-                          Text(ticket["ubicacion"],style: TextStyle(color: Colors.white,fontSize: 16)),
+                          Text(ticket["ubicacion"]["direccion"],style: TextStyle(color: Colors.white,fontSize: 16)),
                         ],
                       ),
                       Text(ticket["precio"].toString() + "€/noche",style: TextStyle(color: Colors.white,fontSize: 16)),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 5,right: 10),
                         child: RatingBarIndicator(
-                          rating: ticket["puntuacion"],
+                          rating: ticket["puntuacion"]+.0,
                           itemBuilder: (context, index) => const Icon(
                             Icons.star,
                             color: Colors.amber,

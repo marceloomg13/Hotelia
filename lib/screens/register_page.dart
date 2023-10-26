@@ -33,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
           password: passwordController.text,
         );
       } else {
-        showErrorMessage("Passwords don't match");
+        showErrorMessage("Las contraseñas no coinciden");
       }
       Navigator.pop(context);
     } on FirebaseAuthException catch (e){
@@ -63,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
         context: context,
         builder: (context){
           return const AlertDialog(
-            title: Text("Incorrect Password"),
+            title: Text("Contraseña Incorrecta"),
           );
         }
     );
@@ -95,7 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 50),
 
                 Text(
-                  'Lets create an account for you!',
+                  '¡Vamos a crear una cuenta para tí!',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -110,11 +110,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: emailController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'email or username',
+                        labelText: 'email o usuario',
                         labelStyle: TextStyle(
                           color: Colors.white
                         ),
-                        hintText: 'Enter valid email id as abc@gmail.com'),
+                        hintText: 'Ingrese una identificación de email válida como abc@gmail.com'),
                   ),
                 ),
 
@@ -130,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         labelStyle: TextStyle(
                             color: Colors.white
                         ),
-                        hintText: 'Enter valid email id as abc@gmail.com'),
+                        hintText: 'Introduzca una contraseña válida'),
                   ),
                 ),
 
@@ -142,11 +142,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: confirmPasswordController,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'confirm password',
+                        labelText: 'confirmar contraseña',
                         labelStyle: TextStyle(
                             color: Colors.white
                         ),
-                        hintText: 'Enter valid email id as abc@gmail.com'),
+                    ),
                   ),
                 ),
 
@@ -154,7 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 const SizedBox(height: 25),
 
                 MyButton(
-                  text: "Sign up",
+                  text: "Registro",
                   onTap: signUserUp,
                 ),
 
@@ -173,7 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
-                          'Or continue with',
+                          'O continua con',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -193,14 +193,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Already have an account?',
+                      '¿Ya tienes una cuenta?',
                       style: TextStyle(color: Colors.white),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        'Login now',
+                        'Inicia sesión ahora',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,

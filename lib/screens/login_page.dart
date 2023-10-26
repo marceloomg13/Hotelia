@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
         context: context,
         builder: (context){
           return const AlertDialog(
-            title: Text("Incorrect Password"),
+            title: Text("Contraseña incorrecta"),
           );
         }
     );
@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 50),
 
                 Text(
-                  'Welcome back you\'ve been missed!',
+                  'Bienvenido de vuelta!',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -114,12 +114,12 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.white,
                         ),
                         border: OutlineInputBorder(),
-                        labelText: 'email or username',
+                        labelText: 'email o usuario',
                         labelStyle: TextStyle(
                           color: Colors.white
                         ),
-                        hintText: 'Enter valid email id as abc@gmail.com',
-                        hintStyle: TextStyle(color: Colors.white)
+                        hintText: 'Introduce un email válido, ej:abc@gmail.com',
+                        hintStyle: TextStyle(color: Colors.grey)
                     ),
                   ),
                 ),
@@ -135,11 +135,11 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                         hintStyle: TextStyle(color: Colors.white),
                         border: OutlineInputBorder(),
-                        labelText: 'password',
+                        labelText: 'contraseña',
                         labelStyle: TextStyle(
                             color: Colors.white
                         ),
-                        hintText: 'Enter valid email id as abc@gmail.com'),
+                        hintText: 'Introduce tu contraseña'),
                   ),
                 ),
 
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        'Forgot Password?',
+                        '¿Has olvidado la contraseña?',
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -161,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 25),
 
                 MyButton(
-                  text: "Sign in",
+                  text: "Log in",
                   onTap: signUserIn,
                 ),
 
@@ -180,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
-                          'Or continue with',
+                          'O continua con',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -198,14 +198,14 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Not a member?',
+                      '¿No eres un miembro?',
                       style: TextStyle(color: Colors.white),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        'Register now',
+                        'Registrate ahora',
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,

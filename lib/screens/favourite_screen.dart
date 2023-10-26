@@ -2,7 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotelia/Data/data.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hotelia/screens/favourite_list_view.dart';
 import 'package:hotelia/screens/profile_screen.dart';
+import 'package:hotelia/screens/splash.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class favourite_screen extends StatefulWidget {
@@ -22,7 +26,7 @@ class _favourite_screenState extends State<favourite_screen> {
           automaticallyImplyLeading: false,
           centerTitle: true,
           backgroundColor: Colors.blueAccent.withOpacity(0.5),
-          title: const Text("Favourites",style: TextStyle(color: Colors.white,fontSize: 20),textAlign: TextAlign.end,),
+          title: const Text("Favoritos",style: TextStyle(color: Colors.white,fontSize: 20),textAlign: TextAlign.end,),
           actions: [FloatingActionButton(
             backgroundColor: Colors.blueAccent.withOpacity(0.5),
             foregroundColor: Colors.white,
@@ -67,9 +71,7 @@ class _favourite_screenState extends State<favourite_screen> {
     List<Widget> childs = [];
     for(var i=0;i<myFavourites.length;i++){
         childs.add(GestureDetector(
-          onTap: () => {
-
-          },
+          onTap: ()=>navFavListView(i),
           child: ListTile(
             leading: Icon(Icons.favorite,color: Colors.blue),
             title: Text(myFavourites[i].entries.first.value,style: TextStyle(color: Colors.white,fontSize: 18),),
@@ -80,13 +82,11 @@ class _favourite_screenState extends State<favourite_screen> {
               onSelected: (String item) {
                 setState(() {
                   if(item == "Delete"){
-                    deleteItem(myFavourites[i].entries.first.value);
+                    deleteItem(myFavourites[i]["list_id"]);
                   }
                   else if(item == "Edit"){
                     dialogController.text=myFavourites[i].entries.first.value;
                     modifyDialog(myFavourites[i].entries.first.value);
-                  }else{
-                    //#TODO
                   }
                 });
               },
@@ -98,10 +98,6 @@ class _favourite_screenState extends State<favourite_screen> {
                 PopupMenuItem<String>(
                   value: "Delete",
                   child: Text('Delete'),
-                ),
-                const PopupMenuItem<String>(
-                  value: "Share",
-                  child: Text('Share'),
                 ),
               ],
             ),
@@ -117,29 +113,37 @@ class _favourite_screenState extends State<favourite_screen> {
     return childs;
   }
 
+
   //TODO comprobar repetidos
   addList(context) {
+    int new_id = myFavourites.last["list_id"]+1;
+
+    print(myFavourites.last["list_id"]);
     if(dialogController.text.isNotEmpty) {
-      myFavourites.add({"nombre": dialogController.text,
-        "hoteles": {
-        }
-      });
+      var list = {"nombre": dialogController.text,
+      "list_id": new_id,
+      "hoteles": [
+      ]
+      };
+      myFavourites.add(list);
+      final addFavourite = FirebaseFirestore.instance.collection("Favoritos");
+      addFavourite.doc(new_id.toString()).set(list);
+
       setState(() {});
       dialogController.clear();
       Navigator.pop(context);
     }
     else{
-      Fluttertoast.showToast(msg: "Your list name is empty");
+      Fluttertoast.showToast(msg: "El nombre de tu lista está vacío");
     }
-    print(myFavourites);
   }
 
-  deleteItem(name) {
-    print(name);
+  deleteItem(id) {
+    final removeFavourite = FirebaseFirestore.instance.collection("Favoritos");
     for (var i = 0; i <= myFavourites.length-1; i++) {
-      if(myFavourites[i].entries.first.value == name){
+      if(myFavourites[i]["list_id"] == id){
+        removeFavourite.doc(myFavourites[i]["list_id"].toString()).delete();
         myFavourites.removeAt(i);
-        print(myFavourites);
       }
     }
     setState(() {});
@@ -167,10 +171,12 @@ class _favourite_screenState extends State<favourite_screen> {
   );
 
   modifyItem(name,newName,context) {
+    final modifyFavourite = FirebaseFirestore.instance.collection("Favoritos");
     if(newName.toString().isNotEmpty){
     for(var item in myFavourites){
-     if(item["name"]==name){
-       item["name"] = newName;
+     if(item["nombre"]==name){
+       item["nombre"] = newName;
+       modifyFavourite.doc(item["list_id"].toString()).update(item);
      }
   }
     setState(() {});
@@ -178,6 +184,20 @@ class _favourite_screenState extends State<favourite_screen> {
     Navigator.pop(context);
   }else{
       Fluttertoast.showToast(msg: "The new name is empty");
+    }
+  }
+
+  navFavListView(i) {
+    var hoteles = myFavourites[i]["hoteles"];
+    if(hoteles.isEmpty){
+      Fluttertoast.showToast(msg: "La lista está vacía");
+    }else if(hoteles.isNotEmpty){
+    showCupertinoModalPopup(context: context, builder: (context) => AnimatedSplashScreen(
+    splash: Splash(),
+    splashIconSize: double.infinity,
+    duration: 500,
+    splashTransition: SplashTransition.fadeTransition,
+    nextScreen: favourite_list_view(pos:i)));
     }
   }
 

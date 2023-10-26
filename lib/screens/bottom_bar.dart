@@ -5,6 +5,7 @@ import 'package:hotelia/screens/home_screen.dart';
 import 'package:hotelia/screens/profile_screen.dart';
 import 'package:hotelia/utils/Styles.dart';
 
+import 'boughtScreen.dart';
 import 'favourite_screen.dart';
 
 class BottomBar extends StatefulWidget {
@@ -19,7 +20,7 @@ class _BottomBarState extends State<BottomBar> {
   static final List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),//const HomeScreen(),
     favourite_screen(), //const SearchScreen(),
-    Container(), //const TicketScreen(),
+    boughtScreen(), //const TicketScreen(),
     profile_screen(), //const ProfileScreen()
   ];
 
@@ -34,7 +35,7 @@ class _BottomBarState extends State<BottomBar> {
       body: Center(child:_widgetOptions[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColors.mirage,
+        backgroundColor: AppColors.lowMirage,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         elevation: 10,

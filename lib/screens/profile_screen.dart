@@ -1,14 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hotelia/screens/edit_profile.dart';
-import 'package:hotelia/widgets/favourite_box.dart';
+import 'package:hotelia/screens/profile_edit_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hotelia/screens/login_or_register.dart';
+import 'package:hotelia/screens/login_page.dart';
 
 class profile_screen extends StatefulWidget {
   const profile_screen({super.key});
 
   @override
   State<profile_screen> createState() => _profile_screenState();
+}
+
+void signOut(context){
+  FirebaseAuth.instance.signOut();
+  showCupertinoModalPopup(context: context, builder:
+      (context) =>const LoginOrRegisterPage());
 }
 
 class _profile_screenState extends State<profile_screen> {
@@ -31,7 +39,7 @@ class _profile_screenState extends State<profile_screen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Gap(20),
-                    const Text("Profile",textAlign: TextAlign.center,style: TextStyle(color: Colors.grey,fontSize: 20),),
+                    const Text("Perfil",textAlign: TextAlign.center,style: TextStyle(color: Colors.white,fontSize: 20),),
                     Gap(20),
                     ClipOval(
                       child: SizedBox.fromSize(
@@ -51,30 +59,6 @@ class _profile_screenState extends State<profile_screen> {
                 ),
               ),
               Gap(20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ListTile(
-                  leading: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.blueAccent.withOpacity(0.5)
-                    ),
-                    child: Icon(Icons.settings,color: Colors.white,),
-                  ),
-                  title: Text("Settings",style: TextStyle(color: Colors.white,fontSize: 20)),
-                  trailing: Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.grey.withOpacity(0.5)
-                    ),
-                    child: Icon(Icons.arrow_right,color: Colors.grey,),
-                  ),
-                ),
-              ),
               Gap(5),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -88,7 +72,7 @@ class _profile_screenState extends State<profile_screen> {
                     ),
                     child: Icon(Icons.payments,color: Colors.white,),
                   ),
-                  title: Text("Payment settings",style: TextStyle(color: Colors.white,fontSize: 20)),
+                  title: Text("Ajustes de Pago",style: TextStyle(color: Colors.white,fontSize: 20)),
                   trailing: Container(
                     width: 30,
                     height: 30,
@@ -103,25 +87,30 @@ class _profile_screenState extends State<profile_screen> {
               Gap(5),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ListTile(
-                  leading: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.blueAccent.withOpacity(0.5)
+                child: GestureDetector(
+                  onTap: ()=>{
+                  showCupertinoModalPopup(context: context, builder: (context) => infoScreen()),
+                  },
+                  child: ListTile(
+                    leading: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.blueAccent.withOpacity(0.5)
+                      ),
+                      child: Icon(Icons.info,color: Colors.white,),
                     ),
-                    child: Icon(Icons.info,color: Colors.white,),
-                  ),
-                  title: Text("Information",style: TextStyle(color: Colors.white,fontSize: 20)),
-                  trailing: Container(
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.grey.withOpacity(0.5)
+                    title: Text("Information",style: TextStyle(color: Colors.white,fontSize: 20)),
+                    trailing: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.grey.withOpacity(0.5)
+                      ),
+                      child: Icon(Icons.arrow_right,color: Colors.grey,),
                     ),
-                    child: Icon(Icons.arrow_right,color: Colors.grey,),
                   ),
                 ),
               ),
@@ -133,17 +122,20 @@ class _profile_screenState extends State<profile_screen> {
               Gap(15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: ListTile(
-                  leading: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: Colors.blueAccent.withOpacity(0.5)
+                child: GestureDetector(
+                  onTap: ()=>signOut(context),
+                  child: ListTile(
+                    leading: Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.blueAccent.withOpacity(0.5)
+                      ),
+                      child: Icon(Icons.logout,color: Colors.white,),
                     ),
-                    child: Icon(Icons.logout,color: Colors.white,),
+                    title: Text("Salir",style: TextStyle(color: Colors.red,fontSize: 20)),
                   ),
-                  title: Text("Logout",style: TextStyle(color: Colors.red,fontSize: 20)),
                 ),
               ),
             ],
@@ -151,5 +143,31 @@ class _profile_screenState extends State<profile_screen> {
         ],
       ),
     );
+  }
+
+  infoScreen() {
+   return Scaffold(
+     appBar: AppBar(
+       centerTitle: true,
+       backgroundColor: Colors.blueAccent.withOpacity(0.5),
+       title: const Text("Información",style: TextStyle(color: Colors.white,fontSize: 20),textAlign: TextAlign.end,),
+     ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Text("Descripción:\n\n"
+          "Hotelia es una aplicación móvil que facilita la búsqueda, comparación y reserva de hoteles en todo el mundo. Ofrece una amplia selección de opciones, reseñas de usuarios y ofertas exclusivas.\n\n\n"+
+          "Características Principales:\n\n"
+
+          "Búsqueda intuitiva y reservas personalizadas."
+          "Comparación de precios y reseñas de hoteles."
+          "Ofertas especiales y promociones para usuarios."
+          "Gestión sencilla de reservas existentes."
+          "Plataformas: Disponible en iOS y Android para smartphones y tabletas.\n\n"
+
+          "Servicio al Cliente: Soporte 24/7 a través de chat, correo electrónico y llamadas."
+
+          ,style: TextStyle(color: Colors.white,fontSize: 16),),
+    )
+   );
   }
 }
